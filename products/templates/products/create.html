@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if error %}
+
+{{ error }}
+<br/>
+<br/>
+
+{% endif %}
+<h1>Create!!!</h1>
+<br/>
+<br/>
+<div class="flex-container">
+<form method="POST" action="{% url 'create' %}" enctype=“multipart/from-data” style="outline:5px solid blue;outline-offset: 15px;padding-left:170px;font-weight:bold;">
+  {% csrf_token %}
+  <label style="text-align:left">Title:</label>
+  <br/>
+  <input type="text" name="title" placeholder="abc" required/>
+  <br/>
+  <label style="text-align:left">Body:</label>
+  <br/>
+  <input type="textbox" name="body" placeholder="abc" required/>
+  <br/>
+  <label style="text-align:left">Url:</label>
+  <br/>
+  <input type="text" name="url" placeholder="url" required/>
+
+  <br/>
+  <label style="text-align:left">Image:</label>
+  <br/>
+  <input type="file" name="image"/>
+
+  <br/>
+  <label style="text-align:left">Icon:</label>
+  <br/>
+  <input type="file" name="icon"/>
+  <br/>
+
+  <br/>
+  <input class="btn btn-success" type="submit" value="Add Product"/>
+
+
+  </form>
+</div>
+{% endblock %}

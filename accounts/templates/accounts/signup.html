@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if error %}
+
+{{ error }}
+<br/>
+<br/>
+
+{% endif %}
+{% load staticfiles%}
+
+<h1>Sign Up !!!</h1>
+<br/>
+<br/>
+<div class="flex-container">
+  <div class="row">
+
+    <div class="col-6">
+      <br />
+      <br />
+<form method="POST" action="{% url 'signup' %}" style="outline:5px solid blue;outline-offset: 15px;font-weight:bold;width:250px;padding:30px">
+  {% csrf_token %}
+  <label style="text-align:left">Username:</label>
+  <br/>
+  <input type="text" name="username" placeholder="abc" required/>
+  <br/>
+  <label style="text-align:left">Email:</label>
+  <br/>
+  <input type="email" name="email1" placeholder="abc@xyz.com" required/>
+  <br/>
+  <label style="text-align:left">Password:</label>
+  <br/>
+  <input type="password" name="password1" placeholder="Password" required/>
+  <br/>
+  <label style="text-align:left">Confirm Password:</label>
+  <br/>
+  <input type="password" name="password2" placeholder="Confirm Password" required/>
+  <br/>
+  <br/>
+  <input class="btn btn-success" type="submit" value="signup"/>
+
+
+  </form>
+
+</div>
+  <div class="col-6">
+    <img src="{% static 'kitty.png' %}" width="400"/>
+  </div>
+  </div>
+</div>
+{% endblock %}

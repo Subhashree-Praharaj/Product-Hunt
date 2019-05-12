@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br />
+<br />
+
+<div class="row">
+  <div class="col-2">
+
+  </div>
+  <div class="col-6">
+    <h2 style="color:olive">Product Name</h2>
+  </div>
+  <div class="col-4">
+    <h2 style="color:olive">Product Details</h2>
+  </div>
+</div>
+
+
+<br />
+<br />
+{% for product in products.all %}
+
+
+<div class="row">
+
+  <div class="col-2">
+    <div class="col-2" onclick="window.location='{% url 'detail' product.id %}';" style="cursor:pointer;">
+      <img src="{{ product.icon.url }}" width="100"/>
+    </div>
+
+  </div>
+  <div class="col-6" onclick="window.location='{% url 'detail' product.id %}';" style="cursor:pointer;">
+    <h3 style="color:purple">{{ product.title }}</h3>
+
+  </div>
+  <div class="col-4">
+    <h3 style="color:brown">Hunted by {{ product.hunter.username }}</h3>
+    <h4 style="color:green">On {{ product.pub_date_pretty }}</h4>
+      <a href="javascript:{document.getElementById('upvote{{ product.id }}').submit()}"><button class="btn btn-primary btn-lg btn-block"><span class="oi oi-caret-top"></span>upvote {{ product.votes_total }}</button></a>
+  </div>
+
+
+</div>
+<br />
+<br />
+
+<form id="upvote{{ product.id }}" method="POST" action="{% url 'upvote' product.id %}">
+  {% csrf_token %}
+  <input type="hidden">
+</form>
+
+{% endfor %}
+
+
+
+{% endblock %}
